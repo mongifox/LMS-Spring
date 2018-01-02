@@ -148,7 +148,7 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 	public List<Book> readAllBooksByPg(Integer pageNo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		setPageNo(pageNo);
 		System.out.println("Page No inside book dao" + pageNo);
-		return jdbcTemplate.query("SELECT * FROM tbl_book", this);
+		return jdbcTemplate.query(limitFunc("SELECT * FROM tbl_book"), this);
 	}
 
 	//12. Get Books Count

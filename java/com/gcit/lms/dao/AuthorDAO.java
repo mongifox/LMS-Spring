@@ -80,8 +80,9 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		setPageNo(pageNo);
 		System.out.println("Page No inside dao : " + pageNo);
-		return jdbcTemplate.query("SELECT * FROM tbl_author", this);
+		return jdbcTemplate.query(limitFunc("SELECT * FROM tbl_author"), this);
 	}
+	
 	
 	public Integer getAuthorsCount()
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {

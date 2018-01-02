@@ -230,7 +230,7 @@ public class AdminController {
 		System.out.println("Total Authors: " + totalAuthors);
 		model.addAttribute("totalAuthors", totalAuthors);
 		
-		return "Author/viewauthors";
+		return "AuthorJSP/viewauthors";
 	}
 	
 	@RequestMapping(value = "/pageBooks", method = RequestMethod.GET)
@@ -238,8 +238,8 @@ public class AdminController {
 		//request.setAttribute("books", adminService.readBooksByPage(pageNo, null));
 		model.addAttribute("books", adminService.readBooksByPage(pageNo, null) );
 		List<Book> books = new ArrayList<>();
-		books = adminService.readBooksByPage(1, null);
-		model.addAttribute("books", books);
+//		books = adminService.readBooksByPage(1, null);
+//		model.addAttribute("books", books);
 		Integer totalBooks = adminService.getBooksCount();
 		model.addAttribute("totalBooks", totalBooks);
 		

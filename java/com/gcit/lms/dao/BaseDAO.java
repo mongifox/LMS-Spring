@@ -29,4 +29,11 @@ public abstract class BaseDAO<T> {
 		this.pageSize = pageSize;
 	}
 
+	public String limitFunc(String sql){
+		if(getPageNo() > 0){
+			return sql+= " LIMIT "+(getPageNo()-1)*8+" ,"+getPageSize();
+		}
+		return null;
+	}
+	
 }
