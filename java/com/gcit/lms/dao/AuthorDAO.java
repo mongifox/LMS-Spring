@@ -65,6 +65,10 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 		jdbcTemplate.update("DELETE FROM tbl_book_authors WHERE authorId = ?", new Object[] { author.getAuthorId() });
 	}
 	
+	public List<Author> readAuthorByBooks(Book book) throws SQLException{
+		return jdbcTemplate.query("SELECT * FROM tbl_author WHERE authorId IN (SELECT authorId FROM tbl_book_authors WHERE bookId = ?)", new Object[] {book.getBookId()}, this);
+	}
+	
 	// 7. Read All Authors
 	public List<Author> readAllAuthors()
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
@@ -75,7 +79,7 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 	public List<Author> readAllAuthorsByPg(Integer pageNo)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		setPageNo(pageNo);
-		System.out.println("Page No inside dao" + pageNo);
+		System.out.println("Page No inside dao : " + pageNo);
 		return jdbcTemplate.query("SELECT * FROM tbl_author", this);
 	}
 	
@@ -100,6 +104,10 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 		} else {
 			return null;
 		}
+	}
+	
+	public List<Author> readAuthorsByBook(Integer bookId) throws SQLException{
+		return jdbcTemplate.query("SELECT * FROM tbl_author WHERE authorId IN (SELECT authorId FROM tbl_book_authors WHERE bookId = ?)", new Object[] {bookId}, this);
 	}
 	
 	//10. Extract Data

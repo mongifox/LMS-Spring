@@ -83,6 +83,10 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 		return holder.getKey().intValue();
 	}
 
+	public void addBookPublisher(Book book, Integer publisherId) throws SQLException {
+		jdbcTemplate.update("UPDATE tbl_book SET title =? WHERE pubId = ?", new Object[] { book.getTitle(), publisherId });
+	}
+	
 	public void deleteBook(Book book)
 			throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		jdbcTemplate.update("DELETE FROM tbl_book WHERE bookId = ?", new Object[] { book.getBookId() });
@@ -97,7 +101,8 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 	// 6. Read All Books
 	public List<Book> readAllBooks()
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		 return jdbcTemplate.query("SELECT * FROM tbl_book", this);
+		System.out.println("Entering inside read books DAO module");
+		return jdbcTemplate.query("SELECT * FROM tbl_book", this);
 	}
 
 	// 7. Read All Books by Name
@@ -129,6 +134,14 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 	public List<Book> readBooksByBorrowers(Branch branch, Borrower borrower) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return jdbcTemplate.query("SELECT * FROM tbl_book WHERE bookId IN (SELECT bookId FROM tbl_book_loans WHERE branchId = ? AND cardNo = ? AND dateIn IS null)",
 				new Object[] { branch.getBranchId(), borrower.getCardNo() }, this);
+	}
+	
+	public List<Book> readBooksByAuthor(Author author) throws SQLException{
+		return jdbcTemplate.query("SELECT * FROM tbl_book WHERE bookId IN (SELECT bookId FROM tbl_book_authors WHERE authorId=?)", new Object[] {author.getAuthorId()}, this);
+	}
+	
+	public List<Book> readBooksByPublisher(Publisher publisher) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		return jdbcTemplate.query("SELECT * from tbl_book WHERE pubId = ?", new Object[] { publisher.getPublisherId() }, this);
 	}
 	
 	//11. Read All Authors by Page Number

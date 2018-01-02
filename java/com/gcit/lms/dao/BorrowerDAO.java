@@ -107,9 +107,9 @@ public class BorrowerDAO extends BaseDAO<Borrower> implements ResultSetExtractor
 	}
 
 	public boolean checkValidation(Borrower borrower) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		List<Borrower> cd = jdbcTemplate.query("SELECT * FROM tbl_borrower WHERE cardNo  = ?", new Object[] { borrower.getCardNo()}, this);
-		//System.out.println("Entering into BorroweDAO validation");
-		if(!cd.isEmpty()) {
+		List<Borrower> brVal = jdbcTemplate.query("SELECT * FROM tbl_borrower WHERE cardNo  = ?", new Object[] { borrower.getCardNo()}, this);
+		System.out.println("Entering into BorroweDAO validation");
+		if(!brVal.isEmpty()) {
 			return true;
 		}
 		return false;

@@ -76,6 +76,10 @@ public class GenreDAO extends BaseDAO<Genre> implements ResultSetExtractor<List<
 		return jdbcTemplate.query("SELECT * FROM tbl_genre", this);
 	}
 
+	public List<Genre> readGenresByBook(Book book) throws SQLException{
+		return jdbcTemplate.query("SELECT * FROM tbl_genre WHERE genre_id IN (SELECT genre_id FROM tbl_book_genres WHERE bookId = ?)", new Object[] {book.getBookId()}, this);
+	}
+	
 	//read genre by name
 	public List<Genre> readGenreByName(String genre_name)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {

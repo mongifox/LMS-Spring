@@ -75,6 +75,10 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtra
 		}
 	}
 	
+	public List<BookCopies> readBookCopieForaBook(Integer bookId) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		return	jdbcTemplate.query("SELECT * FROM tbl_book_copies WHERE bookId  = ? ", new Object[] { bookId }, this);
+	}
+	
 	//9. Read Book Copies using both branch and book id's
 	public BookCopies readBookCopiesByBothIds( Integer branchId, Integer bookId) {
 		BookCopies bc = new BookCopies();
@@ -89,7 +93,7 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtra
 			System.out.println("Entering here inside Total Book Copies");
 			BookCopies b = bc.get(0);
 			
-			System.out.println("No of Copies inside Read Totol Book Copies : " + b.getNoOfCopies());
+			System.out.println("No of Copies inside Read Total Book Copies : " + b.getNoOfCopies());
 			return b.getNoOfCopies();
 		}
 		return null;

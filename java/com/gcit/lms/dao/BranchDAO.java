@@ -15,6 +15,8 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.gcit.lms.entity.Branch;
 
@@ -22,6 +24,7 @@ import com.gcit.lms.entity.Branch;
  * @author tejassrinivas
  *
  */
+@Repository
 public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<List<Branch>> {
 
 	public void addBranch(Branch branch)
@@ -29,11 +32,6 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 		jdbcTemplate.update("INSERT INTO tbl_library_branch (branchName, branchAddress) VALUES (?,?)", new Object[] { branch.getBranchName(),branch.getBranchAddress()  });
 	}
 
-//	public Integer addBranchWithID(Branch branch)
-//			throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-//	return	saveWithID("INSERT INTO tbl_library_branch (branchName, branchAddress) VALUES (?,?)", new Object[] { branch.getBranchName(),branch.getBranchAddress()  });
-//	}
-	
 	public Integer addBranchWithID(Branch branch) throws SQLException {
 		KeyHolder holder = new GeneratedKeyHolder();
 		final String sql = "INSERT INTO tbl_library_branch (branchName, branchAddress) VALUES (?,?)";
@@ -59,8 +57,8 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 		jdbcTemplate.update("DELETE FROM tbl_library_branch WHERE branchId = ?", new Object[] { branch.getBranchId() });
 	}
 	
-	public List<Branch> readAllBranches()
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public List<Branch> readAllBranches() throws SQLException {
+		System.out.println("Branch DAO");
 		return jdbcTemplate.query("SELECT * FROM tbl_library_branch", this);
 	}
 	
