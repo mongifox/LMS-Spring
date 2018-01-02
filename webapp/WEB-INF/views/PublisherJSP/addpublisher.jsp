@@ -2,7 +2,7 @@
 <%@page import="com.gcit.lms.entity.Book"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 <%
 List<Book> books = new ArrayList<>();
 books = (List<Book>) request.getAttribute("books");

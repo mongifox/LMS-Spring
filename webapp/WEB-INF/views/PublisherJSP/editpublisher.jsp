@@ -1,6 +1,6 @@
 <%@page import="com.gcit.lms.entity.Publisher"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%AdminService adminService = new AdminService();
 Publisher publisher = adminService.readPublisherByPk(Integer.parseInt(request.getParameter("publisherId")));

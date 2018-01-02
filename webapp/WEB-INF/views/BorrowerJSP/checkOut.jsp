@@ -4,7 +4,7 @@
 <%@page import="com.gcit.lms.entity.Branch"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.BorrowerService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%
 List<Book> books = new ArrayList<>();

@@ -1,6 +1,6 @@
 <%@page import="com.gcit.lms.entity.Book"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 <%
 Book book = (Book) request.getAttribute("book");
 %>

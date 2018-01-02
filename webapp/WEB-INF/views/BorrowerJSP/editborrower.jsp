@@ -1,6 +1,6 @@
 <%@page import="com.gcit.lms.entity.Borrower"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%
 Borrower borrower = (Borrower) request.getAttribute("borrower");

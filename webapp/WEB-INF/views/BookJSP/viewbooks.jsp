@@ -5,7 +5,7 @@
 <%@page import="com.gcit.lms.entity.Genre"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%
 	/* AdminService adminService = new AdminService();

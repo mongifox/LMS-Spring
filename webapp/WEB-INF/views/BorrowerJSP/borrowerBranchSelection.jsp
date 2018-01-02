@@ -5,7 +5,7 @@
 <%@page import="com.gcit.lms.entity.Branch"%>
 <%@page import="java.util.List"%>
 
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%
 //BorrowerService brwService = new BorrowerService();

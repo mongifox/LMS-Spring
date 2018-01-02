@@ -2,7 +2,7 @@
 <%@page import="com.gcit.lms.entity.Book"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <div class="container">
 <form action="saveBorrower" class="w-50" style="margin:auto" method="post">

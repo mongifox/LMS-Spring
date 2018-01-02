@@ -1,6 +1,6 @@
 <%@page import="com.gcit.lms.entity.Branch"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 <%AdminService adminService = new AdminService();
 Branch branch = adminService.readBranchByPk(Integer.parseInt(request.getParameter("branchId")));
 %>

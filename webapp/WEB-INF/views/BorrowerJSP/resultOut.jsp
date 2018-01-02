@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="com.gcit.lms.service.BorrowerService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%
 List<Book> books = new ArrayList<>();

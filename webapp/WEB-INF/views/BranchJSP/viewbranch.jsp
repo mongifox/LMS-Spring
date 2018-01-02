@@ -4,7 +4,7 @@
 <%@page import="com.gcit.lms.entity.Branch"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 
 <%
 	

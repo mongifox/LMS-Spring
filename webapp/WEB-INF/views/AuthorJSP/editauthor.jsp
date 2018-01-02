@@ -1,6 +1,6 @@
 <%@page import="com.gcit.lms.entity.Author"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 <%
 Author author = (Author) request.getAttribute("author");
 %>

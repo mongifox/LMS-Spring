@@ -5,7 +5,7 @@
 <%@page import="com.gcit.lms.entity.Publisher"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 <%	
 List<Publisher> publishers = new ArrayList<>();
 publishers = (List<Publisher>) request.getAttribute("publishers");

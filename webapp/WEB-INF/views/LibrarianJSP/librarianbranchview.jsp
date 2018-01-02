@@ -4,8 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.gcit.lms.entity.Branch"%>
 <%@page import="java.util.List"%>
-
-<%@include file="header.html" %>
+<%@include file="../header.html" %>
 
 <%
 	//LibrarianService libService = new LibrarianService();

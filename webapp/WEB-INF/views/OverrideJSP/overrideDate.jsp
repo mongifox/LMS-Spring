@@ -2,7 +2,7 @@
 <%@page import="com.gcit.lms.entity.Book"%>
 <%@page import="java.util.List"%>
 <%@page import="com.gcit.lms.service.AdminService"%>
-<%@include file="header.html"%>
+<%@include file="../header.html"%>
 <%
 	Integer bookId = (Integer)request.getAttribute("bookId");
 	Integer branchId = (Integer)request.getAttribute("branchId");
