@@ -29,7 +29,7 @@ public class BorrowerController {
 	BorrowerService brwService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BorrowerController.class);
-	
+	String message = "";
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -49,9 +49,22 @@ public class BorrowerController {
 			branches = brwService.readAllBranches();
 			model.addAttribute("branches", branches);
 			model.addAttribute("cardNo", cardNo );
+			message = "LogIn Successful";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 			return "BorrowerJSP/borrowerBranchSelection";
 		}
 		else {
+			message = "Authentication Failed, Please Try Again !";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-danger'>"+message+"</div>";
+				
+			}
+			model.addAttribute("statusMessage", message);
 			return "BorrowerJSP/borrowerValidation";
 		}
 	}
@@ -90,8 +103,12 @@ public class BorrowerController {
 			model.addAttribute("booksPerBranch", bookInBranch);
 			model.addAttribute("branchId", branchId );
 			model.addAttribute("cardNo", cardNo );
-			
-			
+			message = "Successfully Checked Out";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 		return "BorrowerJSP/checkOut";	
 	}
 
@@ -123,7 +140,12 @@ public class BorrowerController {
 				mapBookBorrowed.put(book.getBookId(), brwService.countOfLoanedBooksByBorrower(book.getBookId(),cardNo,branchId));
 			}
 			model.addAttribute("mapBookBorrowed", mapBookBorrowed);
-			
+			message = "Successfully Returned Book";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 		return "BorrowerJSP/resultOut";	
 	}
 

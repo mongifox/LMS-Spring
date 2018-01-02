@@ -29,7 +29,7 @@ public class LibrarianController {
 	LibrarianService libService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LibrarianController.class);
-	
+	 String message = "";
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -80,15 +80,12 @@ public class LibrarianController {
 			System.out.println("leaving save copies in librarian service");
 			List<Branch> branches = 	libService.readBranches();
 			model.addAttribute("branches", branches);
-			/*List<Book> books = libService.readBooksByBranch(branch);
-			HashMap<Integer, Integer> mapBooks = new HashMap<>();
-			for(Book b : books) {
-				mapBooks.put(b.getBookId(), libService.readBookCountInBranch(branchId, b.getBookId()));
+			message = "Book Copies Updated sucessfully";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
 			}
-			System.out.println("Map Books" + mapBooks);
-			model.addAttribute("books", books );
-			model.addAttribute("mapBooks", mapBooks);*/
-		
+			model.addAttribute("statusMessage", message);
 		return "LibrarianJSP/librarianbranchview";
 	}
 	
@@ -98,6 +95,12 @@ public class LibrarianController {
 		libService.updateBranch(branchName, branchAddress, branchId);
 		List<Branch> branches = 	libService.readBranches();
 		model.addAttribute("branches", branches);
+		message = "Branch Updated sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "LibrarianJSP/librarianbranchview";
 		
 	}

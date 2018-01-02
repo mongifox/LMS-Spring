@@ -38,7 +38,7 @@ public class AdminController {
 	AdminService adminService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	
+	String message = "";
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -92,6 +92,12 @@ public class AdminController {
 		model.addAttribute("authors", authors);
 		Integer totalAuthors = adminService.getAuthorsCount();
 		model.addAttribute("totalAuthors", totalAuthors);
+		message = "Author added sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "AuthorJSP/viewauthors";
 	}
 	
@@ -145,6 +151,12 @@ public class AdminController {
 			model.addAttribute("books", books);
 			Integer totalBooks = adminService.getBooksCount();
 			model.addAttribute("totalBooks", totalBooks);
+			message = "Book added sucessfully";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 			return "BookJSP/viewbooks";
 	}
 	
@@ -166,6 +178,12 @@ public class AdminController {
 		model.addAttribute("books", books);
 		Integer totalBooks = adminService.getBooksCount();
 		model.addAttribute("totalBooks", totalBooks);
+		message = "Book updated sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "BookJSP/viewbooks";
 	}
 	
@@ -187,6 +205,12 @@ public class AdminController {
 			model.addAttribute("authors", authors);
 			Integer totalAuthors = adminService.getAuthorsCount();
 			model.addAttribute("totalAuthors", totalAuthors);
+			message = "Author updated sucessfully";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 		return "AuthorJSP/viewauthors";
 	}
 	
@@ -202,6 +226,12 @@ public class AdminController {
 		model.addAttribute("authors", authors);
 		Integer totalAuthors = adminService.getAuthorsCount();
 		model.addAttribute("totalAuthors", totalAuthors);
+		message = "Author deleted sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "AuthorJSP/viewauthors";
 	}
 	
@@ -217,6 +247,12 @@ public class AdminController {
 		model.addAttribute("books", books);
 		Integer totalBooks = adminService.getBooksCount();
 		model.addAttribute("totalBooks", totalBooks);
+		message = "Book deleted sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "BookJSP/viewbooks";
 	}
 	
@@ -312,8 +348,22 @@ public class AdminController {
 			List<Publisher> publishers = new ArrayList<>();
 			publishers = adminService.readPublishers();
 			model.addAttribute("publishers", publishers);
+			message = "Publisher added sucessfully";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 
 		return "PublisherJSP/viewpublisher";
+	}
+	
+	@RequestMapping(value = "/editpublisher1", method = RequestMethod.GET)
+	public String editPublisherInitial(Locale locale, Model model, @RequestParam("publisherId") Integer publisherId) {
+		Publisher publisher = adminService.readPublisherByPk(publisherId);
+		model.addAttribute("publisher", publisher);
+		return "PublisherJSP/editpublisher";
+		
 	}
 	
 	//edit publisher
@@ -329,6 +379,12 @@ public class AdminController {
 			List<Publisher> publishers = new ArrayList<>();
 			publishers = adminService.readPublishers();
 			model.addAttribute("publishers", publishers);
+			message = "Publisher updated sucessfully";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 		
 		return "PublisherJSP/viewpublisher";
 	}
@@ -343,6 +399,12 @@ public class AdminController {
 				List<Publisher> publishers = new ArrayList<>();
 				publishers = adminService.readPublishers();
 				model.addAttribute("publishers", publishers);
+				message = "Publisher deleted sucessfully";
+				if(!message.isEmpty())
+				{
+					message = "<div class='alert alert-success'>"+message+"</div>";
+				}
+				model.addAttribute("statusMessage", message);
 			}
 		
 		return "PublisherJSP/viewpublisher";
@@ -389,8 +451,22 @@ public class AdminController {
 			List<Branch> branches = new ArrayList<>();
 			branches = adminService.readBranches();
 			model.addAttribute("branches", branches);
+			message = "Branch added sucessfully";
+			if(!message.isEmpty())
+			{
+				message = "<div class='alert alert-success'>"+message+"</div>";
+			}
+			model.addAttribute("statusMessage", message);
 			return "BranchJSP/viewbranch";
 		}
+	
+	@RequestMapping(value = "/editbranch1", method = RequestMethod.GET)
+	public String editBranchInitial(Locale locale, Model model, @RequestParam("branchId") Integer branchId) {
+		Branch branch = adminService.readBranchByPk(branchId);
+		model.addAttribute("branch", branch);
+		return "BranchJSP/editbranch";
+		
+	}
 	
 	//edit Branch
 	@RequestMapping(value = "/editBranch", method = RequestMethod.POST)
@@ -404,6 +480,12 @@ public class AdminController {
 		List<Branch> branches = new ArrayList<>();
 		branches = adminService.readBranches();
 		model.addAttribute("branches", branches);
+		message = "Branch Updated sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "BranchJSP/viewbranch";
 	}
 	
@@ -418,6 +500,12 @@ public class AdminController {
 			branches = adminService.readBranches();
 			model.addAttribute("branches", branches);
 		}
+		message = "Branch deleted sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 			
 		return "BranchJSP/viewbranch";
 	}
@@ -448,6 +536,12 @@ public class AdminController {
 		List<Borrower> borrowers = new ArrayList<>();
 		borrowers = adminService.readAllBorrowers();
 		model.addAttribute("borrowers", borrowers);
+		message = "Borrower added sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "BorrowerJSP/viewborrower";
 	}
 	
@@ -471,6 +565,12 @@ public class AdminController {
 		List<Borrower> borrowers = new ArrayList<>();
 		borrowers = adminService.readAllBorrowers();
 		model.addAttribute("borrowers", borrowers);
+		message = "Borrower Updated sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "BorrowerJSP/viewborrower";
 	}
 	
@@ -485,7 +585,12 @@ public class AdminController {
 		List<Borrower> borrowers = new ArrayList<>();
 		borrowers = adminService.readAllBorrowers();
 		model.addAttribute("borrowers", borrowers);
-			
+		message = "Borrower deleted sucessfully";
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "BorrowerJSP/viewborrower";
 	}
 	
@@ -549,7 +654,12 @@ public class AdminController {
 		model.addAttribute("mapsBooks", mapsBooks);
 		model.addAttribute("mapsBranches", mapsBranches);
 		model.addAttribute("mapsBorrowers", mapsBorrowers);
-			
+		message = "Successfully overidden the due date";	
+		if(!message.isEmpty())
+		{
+			message = "<div class='alert alert-success'>"+message+"</div>";
+		}
+		model.addAttribute("statusMessage", message);
 		return "OverrideJSP/duedate";
 	}
 
